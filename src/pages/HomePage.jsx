@@ -2,7 +2,7 @@ import OpeningHours from "../components/OpeningHours.jsx";
 import { Link } from "react-router-dom";
 import GoogleMap from "../components/GoogleMap.jsx";
 import NewsAndInformation from "../components/NewsAndInformation.jsx";
-import FeaturedProducts from "@/components/FeaturedProducts.jsx";
+import FeaturedProducts from "../components/FeaturedProducts.jsx";
 
 function HomePage() {
     return (

@@ -9,8 +9,8 @@ import LoginPage from './pages/LoginPage';
 import Footer from "./components/Footer.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import ContactUsPage from "./pages/ContactUsPage.jsx";
-import UpdateProfilePage from "@/pages/UpdateProfilePage.jsx";
-import {useAuth} from "@/contexts/AuthContext.jsx";
+import UpdateProfilePage from "./pages/UpdateProfilePage.jsx";
+import {useAuth} from "./contexts/AuthContext.jsx";
 
 const ProtectedRoute = ({ children }) => {
     const { user } = useAuth(); // Access the user from the AuthContext

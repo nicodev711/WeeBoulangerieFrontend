@@ -1,6 +1,6 @@
 // src/components/NavBar.jsx
 import {Link, NavLink} from 'react-router-dom';
-import {useAuth} from "@/contexts/AuthContext.jsx";
+import {useAuth} from "../contexts/AuthContext.jsx";
 import {useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
