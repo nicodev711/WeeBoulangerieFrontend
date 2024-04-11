@@ -55,15 +55,22 @@ function FeaturedProducts() {
     return (
         <section className="mb-8">
             <h2 className="text-3xl font-bold text-center mb-4" style={{color: '#8c4322'}}>Featured Products</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {products.map((product, index) => (
-                    <div key={index} className="bg-white rounded-lg shadow p-6">
-                        <img src={product.imageUrl} alt={product.name} className="w-full h-64 object-cover rounded-lg"/>
-                        <h3 className="text-xl font-bold mt-2" style={{color: '#8c4322'}}>{product.name}</h3>
-                        <p className="text-md mt-1">{product.description}</p>
-                    </div>
-                ))}
-            </div>
+            {products.length === 0 ? (
+                <div className="flex justify-center items-center h-64">
+                    <p className="text-xl">Loading...</p>
+                </div>
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {products.map((product, index) => (
+                        <div key={index} className="bg-white rounded-lg shadow p-6">
+                            <img src={product.imageUrl} alt={product.name}
+                                 className="w-full h-64 object-cover rounded-lg"/>
+                            <h3 className="text-xl font-bold mt-2" style={{color: '#8c4322'}}>{product.name}</h3>
+                            <p className="text-md mt-1">{product.description}</p>
+                        </div>
+                    ))}
+                </div>
+            )}
             <div className="flex justify-center w-full"> {/* Centering the button horizontally */}
                 <button onClick={goToProductsPage}
                         className="mt-4 bg-boulangerie-main text-white py-2 px-4 rounded hover:bg-boulangerie-dark">View
@@ -71,7 +78,6 @@ function FeaturedProducts() {
                 </button>
             </div>
         </section>
-
     );
 }
 
