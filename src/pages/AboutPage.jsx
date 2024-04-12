@@ -19,9 +19,8 @@ function AboutPage() {
                     work with the weather and the seasons…and we just love it, and love to share with you the taste of
                     real bread!
                 </p>
-                <h2 className="text-2xl font-bold mt-6 mb-4">Our Bread Making Choices</h2>
                 <div className="text-justify mt-8">
-                    <h2 className="text-3xl font-bold mb-8">Crafting Our Artisan Bread</h2>
+                    <h2 className="text-2xl font-bold mb-8">Crafting Our Artisan Bread</h2>
                     <p className="text-lg mb-4">
                         <strong className="text-yellow-600">Step 1: Meticulous Ingredient Selection</strong><br/>
                         Bread making begins with the meticulous selection of ingredients: Flour, water, salt, and

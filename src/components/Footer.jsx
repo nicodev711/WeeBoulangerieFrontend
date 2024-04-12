@@ -5,22 +5,22 @@ import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg
 const Footer = () => {
     return (
         <footer className="bg-boulangerie-main text-white py-8">
-            <div className="container mx-auto flex justify-center items-center">
+            <div className="container mx-auto flex flex-col md:flex-row justify-center items-center text-center md:text-left">
                 {/* Social Network Links */}
-                <nav className="flex items-center space-x-4 mx-10">
+                <nav className="flex justify-center items-center space-x-4 mb-4 md:mb-0 mx-10">
                     <a href="https://www.facebook.com/theweeboulangerie/" className="text-xl hover:text-gray-400" aria-label="Facebook">
-                        <FontAwesomeIcon icon={faFacebook} alt="Facebook Icon"/>
+                        <FontAwesomeIcon icon={faFacebook} />
                     </a>
                     <a href="https://twitter.com/example" className="text-xl hover:text-gray-400" aria-label="Twitter">
-                        <FontAwesomeIcon icon={faTwitter} alt="Twitter Icon"/>
+                        <FontAwesomeIcon icon={faTwitter} />
                     </a>
                     <a href="https://www.instagram.com/theweeboulangerie/" className="text-xl hover:text-gray-400" aria-label="Instagram">
-                        <FontAwesomeIcon icon={faInstagram} alt="Instagram Icon"/>
+                        <FontAwesomeIcon icon={faInstagram} />
                     </a>
                 </nav>
                 {/* Navigation Links */}
                 <nav className="text-sm mx-10">
-                    <ul className="flex space-x-4">
+                    <ul className="flex flex-wrap justify-center space-x-4">
                         <li><a href="/about" className="hover:text-gray-400">About Us</a></li>
                         <li><a href="/contact" className="hover:text-gray-400">Contact</a></li>
                         <li><a href="/faq" className="hover:text-gray-400">FAQ</a></li>

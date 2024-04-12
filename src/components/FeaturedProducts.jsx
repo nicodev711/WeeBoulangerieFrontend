@@ -5,12 +5,13 @@ function FeaturedProducts() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const apiUrl = import.meta.env.VITE_API_URL;
 
     const navigate = useNavigate();
 
     const goToProductsPage = () => {
-        navigate('/products'); // Navigate to the products page
+        navigate('/products');
     };
 
     useEffect(() => {
@@ -22,11 +23,9 @@ function FeaturedProducts() {
                 }
                 const allProducts = await response.json();
 
-                // Calculate indexes based on the day of the year
                 const today = new Date();
                 const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
 
-                // Adjust the logic to select three unique products
                 let selectedProducts = [];
                 for (let i = 0; i < 3; i++) {
                     const productIndex = (dayOfYear + i) % allProducts.length;
@@ -41,7 +40,14 @@ function FeaturedProducts() {
             }
         };
 
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+
+        window.addEventListener('resize', handleResize);
         fetchProducts();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, [apiUrl]);
 
     if (loading) {
@@ -52,30 +58,33 @@ function FeaturedProducts() {
         return <div>Error: {error}</div>;
     }
 
+    const productContainerClass = isMobile ? "flex overflow-x-scroll py-2" : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4";
+    const productCardClass = isMobile ? "min-w-[60%] bg-white rounded-lg shadow p-6 mr-4" : "bg-white rounded-lg shadow p-6";
+    const titleClass = isMobile ? "text-xl font-bold mt-2" : "text-3xl font-bold text-center mb-4";
+    const descriptionClass = isMobile ? "text-sm mt-1" : "text-md mt-1";
+
     return (
         <section className="mb-8">
-            <h2 className="text-3xl font-bold text-center mb-4" style={{color: '#8c4322'}}>Featured Products</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <h2 className={titleClass} style={{ color: '#8c4322' }}>Featured Products</h2>
+            <div className={productContainerClass}>
                 {products.map((product, index) => (
-                    // Check if product and imageUrl are defined before rendering
                     product && product.imageUrl && (
-                        <div key={index} className="bg-white rounded-lg shadow p-6">
+                        <div key={index} className={productCardClass}>
                             <img src={product.imageUrl} alt={product.name}
-                                 className="w-full h-64 object-cover rounded-lg"/>
-                            <h3 className="text-xl font-bold mt-2" style={{color: '#8c4322'}}>{product.name}</h3>
-                            <p className="text-md mt-1">{product.description}</p>
+                                 className="w-full h-48 object-cover rounded-lg"/>
+                            <h3 className={titleClass} style={{ color: '#8c4322' }}>{product.name}</h3>
+                            <p className={descriptionClass}>{product.description}</p>
                         </div>
                     )
                 ))}
             </div>
-            <div className="flex justify-center w-full"> {/* Centering the button horizontally */}
+            <div className="flex justify-center w-full">
                 <button onClick={goToProductsPage}
-                        className="mt-4 bg-boulangerie-main text-white py-2 px-4 rounded hover:bg-boulangerie-dark">View
-                    All Products
+                        className="mt-4 bg-boulangerie-main text-white py-2 px-4 rounded hover:bg-boulangerie-dark">
+                    View All Products
                 </button>
             </div>
         </section>
-
     );
 }
 
